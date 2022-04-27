@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LeetCode：3、4、83、88 | 零泽</title><meta name="keywords" content="算法,LeetCode,c++"><meta name="author" content="零泽"><meta name="copyright" content="零泽"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="3、无重复字符的最长子串#include &lt;string&gt;using namespace std;class Solution &amp;#123;  public:    int lengthOfLongestSubstring(string s) &amp;#123;        int len &#x3D; 0;        while (!s.empty()) &amp;#123;            b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode：3、4、83、88">
+<meta property="og:url" content="https://lz37.github.io/2022/01/23/LeetCode3,4,83,88/index.html">
+<meta property="og:site_name" content="零泽">
+<meta property="og:description" content="3、无重复字符的最长子串#include &lt;string&gt;using namespace std;class Solution &amp;#123;  public:    int lengthOfLongestSubstring(string s) &amp;#123;        int len &#x3D; 0;        while (!s.empty()) &amp;#123;            b">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg">
+<meta property="article:published_time" content="2022-01-23T09:16:00.000Z">
+<meta property="article:modified_time" content="2021-01-23T09:18:00.000Z">
+<meta property="article:author" content="零泽">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lz37.github.io/2022/01/23/LeetCode3,4,83,88/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-01-23 17:18:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/24218478_84738252_p0_%EF%BF%A6ANKE_the_moon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">零泽</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">LeetCode：3、4、83、88</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-23T09:16:00.000Z" title="发表于 2022-01-23 17:16:00">2022-01-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-23T09:18:00.000Z" title="更新于 2021-01-23 17:18:00">2021-01-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LeetCode：3、4、83、88"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="3、无重复字符的最长子串"><a href="#3、无重复字符的最长子串" class="headerlink" title="3、无重复字符的最长子串"></a>3、无重复字符的最长子串</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (!s.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="type">bool</span> flag = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">length</span>(); i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (flag)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (s[i] == s[j]) &#123;</span><br><span class="line">                        len = i &gt; len ? i : len;</span><br><span class="line">                        s = s.<span class="built_in">substr</span>(j + <span class="number">1</span>);</span><br><span class="line">                        flag = <span class="number">1</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">                len = s.<span class="built_in">length</span>() &gt; len ? s.<span class="built_in">length</span>() : len;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="4、寻找两个正序数组的中位数"><a href="#4、寻找两个正序数组的中位数" class="headerlink" title="4、寻找两个正序数组的中位数"></a>4、寻找两个正序数组的中位数</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">double</span> <span class="title">findMedianSortedArrays</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;nums1, vector&lt;<span class="type">int</span>&gt; &amp;nums2)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*vector&lt;int&gt; nums3;</span></span><br><span class="line"><span class="comment">         int i = 0, j = 0;</span></span><br><span class="line"><span class="comment">         bool choose;</span></span><br><span class="line"><span class="comment">         while (i &lt;= nums1.size() &amp;&amp; j &lt;= nums2.size())</span></span><br><span class="line"><span class="comment">             if (i == nums1.size() || j == nums2.size())</span></span><br><span class="line"><span class="comment">                 break;</span></span><br><span class="line"><span class="comment">             else if (nums1[i] &lt;= nums2[j])</span></span><br><span class="line"><span class="comment">                 nums3.push_back(nums1[i++]);</span></span><br><span class="line"><span class="comment">             else</span></span><br><span class="line"><span class="comment">                 nums3.push_back(nums2[j++]);</span></span><br><span class="line"><span class="comment">         while (i &lt; nums1.size())</span></span><br><span class="line"><span class="comment">             nums3.push_back(nums1[i++]);</span></span><br><span class="line"><span class="comment">         while (j &lt; nums2.size())</span></span><br><span class="line"><span class="comment">             nums3.push_back(nums2[j++]);</span></span><br><span class="line"><span class="comment">         return nums3.size() % 2 ? (double)nums3[(nums3.size() - 1) / 2]</span></span><br><span class="line"><span class="comment">                                 : (double)(nums3[(nums3.size() - 1) / 2] + nums3[(nums3.size() + 1) / 2]) / 2;*/</span></span><br><span class="line">        <span class="comment">// 2094/2094 cases passed (32 ms)</span></span><br><span class="line">        <span class="comment">// Your runtime beats 47.42 % of cpp submissions</span></span><br><span class="line">        <span class="comment">// Your memory usage beats 11.78 % of cpp submissions (87.7 MB)</span></span><br><span class="line">        <span class="comment">//!不符合时间复杂度要求( O(log (m+n)) )，不知道为什么过</span></span><br><span class="line">        <span class="comment">/*int m = nums1.size();</span></span><br><span class="line"><span class="comment">        int n = nums2.size();</span></span><br><span class="line"><span class="comment">        int left = (m + n + 1) / 2;</span></span><br><span class="line"><span class="comment">        int right = (m + n + 2) / 2;</span></span><br><span class="line"><span class="comment">        return (findKth(nums1, 0, nums2, 0, left) + findKth(nums1, 0, nums2, 0, right)) / 2.0;*/</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*int findKth(vector&lt;int&gt; &amp;nums1, int i, vector&lt;int&gt; &amp;nums2, int j, int k) &#123;</span></span><br><span class="line"><span class="comment">        if (i &gt;= nums1.size())</span></span><br><span class="line"><span class="comment">            return nums2[j + k - 1]; // nums1为空数组</span></span><br><span class="line"><span class="comment">        if (j &gt;= nums2.size())</span></span><br><span class="line"><span class="comment">            return nums1[i + k - 1]; // nums2为空数组</span></span><br><span class="line"><span class="comment">        if (k == 1) &#123;</span></span><br><span class="line"><span class="comment">            return min(nums1[i], nums2[j]);</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        int midVal1 = (i + k / 2 - 1 &lt; nums1.size()) ? nums1[i + k / 2 - 1] : INT_MAX;</span></span><br><span class="line"><span class="comment">        int midVal2 = (j + k / 2 - 1 &lt; nums2.size()) ? nums2[j + k / 2 - 1] : INT_MAX;</span></span><br><span class="line"><span class="comment">        if (midVal1 &lt; midVal2) &#123;</span></span><br><span class="line"><span class="comment">            return findKth(nums1, i + k / 2, nums2, j, k - k / 2);</span></span><br><span class="line"><span class="comment">        &#125; else &#123;</span></span><br><span class="line"><span class="comment">            return findKth(nums1, i, nums2, j + k / 2, k - k / 2);</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">    <span class="comment">// 2094/2094 cases passed (32 ms)</span></span><br><span class="line">    <span class="comment">// Your runtime beats 47.42 % of cpp submissions</span></span><br><span class="line">    <span class="comment">// Your memory usage beats 57.87 % of cpp submissions (86.9 MB)</span></span><br><span class="line">    <span class="comment">//!有空得再做一次==，做完这题彻底奠定了要由难到易刷题的决心，不要一口气吃成个胖子</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="83、删除排序链表中的重复元素"><a href="#83、删除排序链表中的重复元素" class="headerlink" title="83、删除排序链表中的重复元素"></a>83、删除排序链表中的重复元素</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*struct ListNode &#123;</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    ListNode *next;</span></span><br><span class="line"><span class="comment">    ListNode() : val(0), next(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment">    ListNode(int x) : val(x), next(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment">    ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;</span></span><br><span class="line"><span class="comment">&#125;;*/</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">deleteDuplicates</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        ListNode *pos = head;</span><br><span class="line">        <span class="keyword">while</span> (pos) &#123;</span><br><span class="line">            <span class="keyword">if</span> (pos-&gt;next &amp;&amp; pos-&gt;next-&gt;val == pos-&gt;val) &#123;</span><br><span class="line">                ListNode *del = pos-&gt;next;</span><br><span class="line">                pos-&gt;next = pos-&gt;next-&gt;next;</span><br><span class="line">                <span class="keyword">delete</span> del;</span><br><span class="line">            &#125; <span class="keyword">else</span></span><br><span class="line">                pos = pos-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">        <span class="comment">// 166/166 cases passed (12 ms)</span></span><br><span class="line">        <span class="comment">// Your runtime beats 44.55 % of cpp submissions</span></span><br><span class="line">        <span class="comment">// Your memory usage beats 10.5 % of cpp submissions (11.4 MB)</span></span><br><span class="line">        <span class="comment">//!没有加del的结果</span></span><br><span class="line">        <span class="comment">// 166/166 cases passed (8 ms)</span></span><br><span class="line">        <span class="comment">// Your runtime beats 84.64 % of cpp submissions</span></span><br><span class="line">        <span class="comment">// Your memory usage beats 43.11 % of cpp submissions (11.3 MB)</span></span><br><span class="line">        <span class="comment">//!回收了垃圾的结果</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="88、合并两个有序数组"><a href="#88、合并两个有序数组" class="headerlink" title="88、合并两个有序数组"></a>88、合并两个有序数组</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;nums1, <span class="type">int</span> m, vector&lt;<span class="type">int</span>&gt; &amp;nums2, <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*int i = 0, j = 0;</span></span><br><span class="line"><span class="comment">        while (i &lt; m &amp;&amp; j &lt; n) &#123;</span></span><br><span class="line"><span class="comment">            if (nums1[i] &gt;= nums2[j]) &#123;</span></span><br><span class="line"><span class="comment">                nums1.pop_back();</span></span><br><span class="line"><span class="comment">                nums1.insert(nums1.begin() + i, nums2[j++]);</span></span><br><span class="line"><span class="comment">                m++;</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            i++;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        while (n - j) &#123;</span></span><br><span class="line"><span class="comment">            nums1.insert(nums1.begin() + i, nums2[j++]);</span></span><br><span class="line"><span class="comment">            nums1.pop_back();</span></span><br><span class="line"><span class="comment">            i++;</span></span><br><span class="line"><span class="comment">        &#125;*/</span></span><br><span class="line">        <span class="comment">// 59/59 cases passed (4 ms)</span></span><br><span class="line">        <span class="comment">// Your runtime beats 52.77 % of cpp submissions</span></span><br><span class="line">        <span class="comment">// Your memory usage beats 92.62 % of cpp submissions (8.7 MB)</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; m + n &amp;&amp; j &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums1[i] &gt;= nums2[j] || i &gt;= m) &#123;</span><br><span class="line">                nums1.<span class="built_in">insert</span>(nums1.<span class="built_in">begin</span>() + i, nums2[j++]);</span><br><span class="line">                nums1.<span class="built_in">pop_back</span>();</span><br><span class="line">                m++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 59/59 cases passed (4 ms)</span></span><br><span class="line">        <span class="comment">// Your runtime beats 52.77 % of cpp submissions</span></span><br><span class="line">        <span class="comment">// Your memory usage beats 92.62 % of cpp submissions (8.7 MB)</span></span><br><span class="line">        <span class="comment">//*两个都是自己写的，一开始是第二版但没注意到m++，换成第一版测试了好久才发现这个问题，再利用原版提升效率，一个小错误竟然浪费了我半个下午，干</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">零泽</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://lz37.github.io/2022/01/23/LeetCode3,4,83,88/">https://lz37.github.io/2022/01/23/LeetCode3,4,83,88/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://lz37.github.io" target="_blank">零泽</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/">算法</a><a class="post-meta__tags" href="/tags/LeetCode/">LeetCode</a><a class="post-meta__tags" href="/tags/c/">c++</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/01/24/LeetCode.704.278.35(%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE)/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">LeetCode.704.278.35(二分查找)</div></div></a></div><div class="next-post pull-right"><a href="/2021/05/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841.%E7%BB%AA%E8%AE%BA/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_87376088_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E5%85%94%E4%B8%8E%E9%B8%9F.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">数据结构 1、绪论</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/02/11/LeetCode.1091.130.797(广度优先搜索&深度优先搜索)/" title="LeetCode.1091.130.797(广度优先搜索&深度优先搜索)"><img class="cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-11</div><div class="title">LeetCode.1091.130.797(广度优先搜索&深度优先搜索)</div></div></a></div><div><a href="/2022/02/23/LeetCode.1143.583.72.322.343(动态规划)/" title="LeetCode.1143.583.72.322.343(动态规划)"><img class="cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-23</div><div class="title">LeetCode.1143.583.72.322.343(动态规划)</div></div></a></div><div><a href="/2022/02/07/LeetCode.153.162(二分查找)/" title="LeetCode.153.162(二分查找)"><img class="cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-07</div><div class="title">LeetCode.153.162(二分查找)</div></div></a></div><div><a href="/2022/02/13/LeetCode.17.22.79(递归&回溯)/" title="LeetCode.17.22.79(递归&回溯)"><img class="cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-13</div><div class="title">LeetCode.17.22.79(递归&回溯)</div></div></a></div><div><a href="/2022/02/10/LeetCode.200.547.117.572(广度优先搜索&深度优先搜索)/" title="LeetCode.200.547.117.572(广度优先搜索&深度优先搜索)"><img class="cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-10</div><div class="title">LeetCode.200.547.117.572(广度优先搜索&深度优先搜索)</div></div></a></div><div><a href="/2022/02/02/LeetCode.21.206(递归&回溯)/" title="LeetCode.21.206(递归&回溯)"><img class="cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-02</div><div class="title">LeetCode.21.206(递归&回溯)</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/24218478_84738252_p0_%EF%BF%A6ANKE_the_moon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">零泽</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/lz37"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2"><span class="toc-number">1.</span> <span class="toc-text">3、无重复字符的最长子串</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">4、寻找两个正序数组的中位数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#83%E3%80%81%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0"><span class="toc-number">3.</span> <span class="toc-text">83、删除排序链表中的重复元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#88%E3%80%81%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84"><span class="toc-number">4.</span> <span class="toc-text">88、合并两个有序数组</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/04/06/Markdown%E4%B8%ADMermaid%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Markdown中Mermaid的使用"><img src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_72608843_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_(%20%E2%80%A2%20%CC%80%CF%89%E2%80%A2%CC%81%20)%E2%9C%A7Great%20Crisis%20II.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Markdown中Mermaid的使用"/></a><div class="content"><a class="title" href="/2022/04/06/Markdown%E4%B8%ADMermaid%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Markdown中Mermaid的使用">Markdown中Mermaid的使用</a><time datetime="2022-04-06T11:40:00.000Z" title="发表于 2022-04-06 19:40:00">2022-04-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/05/LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0(04.05-)/" title="LeetCode刷题笔记(04.05-)"><img src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LeetCode刷题笔记(04.05-)"/></a><div class="content"><a class="title" href="/2022/04/05/LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0(04.05-)/" title="LeetCode刷题笔记(04.05-)">LeetCode刷题笔记(04.05-)</a><time datetime="2022-04-05T05:11:00.000Z" title="发表于 2022-04-05 13:11:00">2022-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/20/%E8%93%9D%E6%A1%A5%E6%9D%AF/" title="蓝桥杯"><img src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="蓝桥杯"/></a><div class="content"><a class="title" href="/2022/03/20/%E8%93%9D%E6%A1%A5%E6%9D%AF/" title="蓝桥杯">蓝桥杯</a><time datetime="2022-03-20T03:38:00.000Z" title="发表于 2022-03-20 11:38:00">2022-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/16/LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0(03.16-03.19)/" title="LeetCode刷题笔记(03.16-03.19)"><img src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LeetCode刷题笔记(03.16-03.19)"/></a><div class="content"><a class="title" href="/2022/03/16/LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0(03.16-03.19)/" title="LeetCode刷题笔记(03.16-03.19)">LeetCode刷题笔记(03.16-03.19)</a><time datetime="2022-03-16T02:47:00.000Z" title="发表于 2022-03-16 10:47:00">2022-03-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/02/LeetCode%E5%88%B7%E9%A1%8C%E7%AD%86%E8%A8%98(03.02-03.15)/" title="LeetCode刷題筆記(03.02-03.15)"><img src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LeetCode刷題筆記(03.02-03.15)"/></a><div class="content"><a class="title" href="/2022/03/02/LeetCode%E5%88%B7%E9%A1%8C%E7%AD%86%E8%A8%98(03.02-03.15)/" title="LeetCode刷題筆記(03.02-03.15)">LeetCode刷題筆記(03.02-03.15)</a><time datetime="2022-03-02T08:34:00.000Z" title="发表于 2022-03-02 16:34:00">2022-03-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By 零泽</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

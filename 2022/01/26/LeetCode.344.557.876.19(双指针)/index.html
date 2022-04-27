@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LeetCode.344.557.876.19(双指针) | 零泽</title><meta name="keywords" content="算法,LeetCode,c++,双指针"><meta name="author" content="零泽"><meta name="copyright" content="零泽"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="344.反转字符串class Solution &amp;#123;  public:    void reverseString(vector&lt;char&gt; &amp;s) &amp;#123;        for (int i &#x3D; 0; i &lt; s.size() &#x2F; 2; i++) &amp;#123;            char temp &#x3D; s[i];            s[i] &#x3D; s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode.344.557.876.19(双指针)">
+<meta property="og:url" content="https://lz37.github.io/2022/01/26/LeetCode.344.557.876.19(%E5%8F%8C%E6%8C%87%E9%92%88)/index.html">
+<meta property="og:site_name" content="零泽">
+<meta property="og:description" content="344.反转字符串class Solution &amp;#123;  public:    void reverseString(vector&lt;char&gt; &amp;s) &amp;#123;        for (int i &#x3D; 0; i &lt; s.size() &#x2F; 2; i++) &amp;#123;            char temp &#x3D; s[i];            s[i] &#x3D; s">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg">
+<meta property="article:published_time" content="2022-01-26T07:59:00.000Z">
+<meta property="article:modified_time" content="2022-01-26T07:59:00.000Z">
+<meta property="article:author" content="零泽">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="c++">
+<meta property="article:tag" content="双指针">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lz37.github.io/2022/01/26/LeetCode.344.557.876.19(%E5%8F%8C%E6%8C%87%E9%92%88)/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-26 15:59:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/24218478_84738252_p0_%EF%BF%A6ANKE_the_moon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">零泽</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">LeetCode.344.557.876.19(双指针)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-26T07:59:00.000Z" title="发表于 2022-01-26 15:59:00">2022-01-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-26T07:59:00.000Z" title="更新于 2022-01-26 15:59:00">2022-01-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LeetCode.344.557.876.19(双指针)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="344-反转字符串"><a href="#344-反转字符串" class="headerlink" title="344.反转字符串"></a>344.反转字符串</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">reverseString</span><span class="params">(vector&lt;<span class="type">char</span>&gt; &amp;s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>() / <span class="number">2</span>; i++) &#123;</span><br><span class="line">            <span class="type">char</span> temp = s[i];</span><br><span class="line">            s[i] = s[s.<span class="built_in">size</span>() - <span class="number">1</span> - i];</span><br><span class="line">            s[s.<span class="built_in">size</span>() - <span class="number">1</span> - i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 477/477 cases passed (12 ms)</span></span><br><span class="line">        <span class="comment">// Your runtime beats 94.86 % of cpp submissions</span></span><br><span class="line">        <span class="comment">// Your memory usage beats 87.91 % of cpp submissions (22.5 MB)</span></span><br><span class="line">        <span class="comment">/*for (int i = 0, j = s.size() - 1; i &lt; s.size() / 2; i++, j--) &#123;</span></span><br><span class="line"><span class="comment">            s[i] ^= s[j];</span></span><br><span class="line"><span class="comment">            s[j] ^= s[i];</span></span><br><span class="line"><span class="comment">            s[i] ^= s[j];</span></span><br><span class="line"><span class="comment">        &#125;*/</span></span><br><span class="line">        <span class="comment">// 477/477 cases passed (20 ms)</span></span><br><span class="line">        <span class="comment">// Your runtime beats 54.54 % of cpp submissions</span></span><br><span class="line">        <span class="comment">// Your memory usage beats 75.1 % of cpp submissions (22.5 MB)</span></span><br><span class="line">        <span class="comment">//*利用位运算实现swap，感觉效率也不是很高==</span></span><br><span class="line">        <span class="comment">//*^ 按位异或</span></span><br><span class="line">        <span class="comment">//*1 ^ 1 = 0 1 ^ 0 = 1 0 ^ 1 = 1 0 ^ 0 = 0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="557-反转字符串中的单词-iii"><a href="#557-反转字符串中的单词-iii" class="headerlink" title="557.反转字符串中的单词-iii"></a>557.反转字符串中的单词-iii</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">reverseWords</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (; j &lt; s.<span class="built_in">length</span>(); j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[j] == <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> k = i; k &lt; i + (j - i) / <span class="number">2</span>; k++) &#123;</span><br><span class="line">                    <span class="built_in">swap</span>(s[k], s[j - <span class="number">1</span> - k + i]);</span><br><span class="line">                &#125;</span><br><span class="line">                i = j + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = i; k &lt; i + (j - i) / <span class="number">2</span>; k++) &#123;</span><br><span class="line">            <span class="built_in">swap</span>(s[k], s[j - <span class="number">1</span> - k + i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">        <span class="comment">// 29/29 cases passed (8 ms)</span></span><br><span class="line">        <span class="comment">// Your runtime beats 92.23 % of cpp submissions</span></span><br><span class="line">        <span class="comment">// Your memory usage beats 98.21 % of cpp submissions (9.2 MB)</span></span><br><span class="line">        <span class="comment">//*调试了三次，成绩都很高感觉有点太简单了==</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="876-链表的中间结点"><a href="#876-链表的中间结点" class="headerlink" title="876.链表的中间结点"></a>876.链表的中间结点</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode() : val(0), next(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">middleNode</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*ListNode *temp1 = head;</span></span><br><span class="line"><span class="comment">        ListNode *temp2 = head;</span></span><br><span class="line"><span class="comment">        int num = 0;</span></span><br><span class="line"><span class="comment">        while (temp1) &#123;</span></span><br><span class="line"><span class="comment">            temp1 = temp1-&gt;next;</span></span><br><span class="line"><span class="comment">            num++;</span></span><br><span class="line"><span class="comment">            if (!(num % 2))</span></span><br><span class="line"><span class="comment">                temp2 = temp2-&gt;next;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        return temp2;*/</span></span><br><span class="line">        <span class="comment">// 36/36 cases passed (0 ms)</span></span><br><span class="line">        <span class="comment">// Your runtime beats 100 % of cpp submissions</span></span><br><span class="line">        <span class="comment">// Your memory usage beats 85.58 % of cpp submissions (6.8 MB)</span></span><br><span class="line">        <span class="comment">//*参考快慢指针，链表的迭代也设置为快慢两个部分</span></span><br><span class="line">        ListNode *temp1 = head;</span><br><span class="line">        ListNode *temp2 = head;</span><br><span class="line">        <span class="keyword">while</span> (temp1 &amp;&amp; temp1-&gt;next) &#123;</span><br><span class="line">            temp1 = temp1-&gt;next-&gt;next;</span><br><span class="line">            temp2 = temp2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp2;</span><br><span class="line">        <span class="comment">// 36/36 cases passed (0 ms)</span></span><br><span class="line">        <span class="comment">// Your runtime beats 100 % of cpp submissions</span></span><br><span class="line">        <span class="comment">// Your memory usage beats 86.9 % of cpp submissions (6.8 MB)</span></span><br><span class="line">        <span class="comment">//*连num都不用设置</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="19-删除链表的倒数第-n-个结点"><a href="#19-删除链表的倒数第-n-个结点" class="headerlink" title="19.删除链表的倒数第-n-个结点"></a>19.删除链表的倒数第-n-个结点</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode() : val(0), next(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// int cur = 0;</span></span><br><span class="line">    <span class="function">ListNode *<span class="title">removeNthFromEnd</span><span class="params">(ListNode *head, <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head-&gt;next == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        ListNode *temp = head;</span><br><span class="line">        ListNode *ans = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>, head);</span><br><span class="line">        head = ans;</span><br><span class="line">        <span class="keyword">while</span> (temp) &#123;</span><br><span class="line">            temp = temp-&gt;next;</span><br><span class="line">            <span class="keyword">if</span> (!n)</span><br><span class="line">                ans = ans-&gt;next;</span><br><span class="line">            n = n &gt; <span class="number">0</span> ? n - <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *del = ans-&gt;next;</span><br><span class="line">        ans-&gt;next = ans-&gt;next-&gt;next ? ans-&gt;next-&gt;next : <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">delete</span> del;</span><br><span class="line">        <span class="keyword">return</span> head-&gt;next;</span><br><span class="line">        <span class="comment">// 208/208 cases passed (4 ms)</span></span><br><span class="line">        <span class="comment">// Your runtime beats 76.92 % of cpp submissions</span></span><br><span class="line">        <span class="comment">// Your memory usage beats 93.63 % of cpp submissions (10.3 MB)</span></span><br><span class="line">        <span class="comment">//*被特殊情况搞得心烦意乱，没想到最特殊的那个只要单独拎出来就好了==（双指针法）</span></span><br><span class="line">        <span class="comment">/*if (!head)</span></span><br><span class="line"><span class="comment">            return NULL;</span></span><br><span class="line"><span class="comment">        head-&gt;next = removeNthFromEnd(head-&gt;next, n);</span></span><br><span class="line"><span class="comment">        cur++;</span></span><br><span class="line"><span class="comment">        if (n == cur) &#123;</span></span><br><span class="line"><span class="comment">            ListNode *next = head-&gt;next;//</span></span><br><span class="line"><span class="comment">            delete head;                //加上垃圾回收</span></span><br><span class="line"><span class="comment">            return next;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        return head;*/</span></span><br><span class="line">        <span class="comment">// 208/208 cases passed (0 ms)</span></span><br><span class="line">        <span class="comment">// Your runtime beats 100 % of cpp submissions</span></span><br><span class="line">        <span class="comment">// Your memory usage beats 7.88 % of cpp submissions (10.5 MB)</span></span><br><span class="line">        <span class="comment">//我淦,递归法只要5行，缺点是没有垃圾回收，就算我加上了垃圾回收空间复杂度也没降下来，不知道为什么</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">零泽</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://lz37.github.io/2022/01/26/LeetCode.344.557.876.19(%E5%8F%8C%E6%8C%87%E9%92%88)/">https://lz37.github.io/2022/01/26/LeetCode.344.557.876.19(%E5%8F%8C%E6%8C%87%E9%92%88)/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://lz37.github.io" target="_blank">零泽</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/">算法</a><a class="post-meta__tags" href="/tags/LeetCode/">LeetCode</a><a class="post-meta__tags" href="/tags/c/">c++</a><a class="post-meta__tags" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">双指针</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/01/27/LeetCode.3.567(%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3)/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">LeetCode.3.567(滑动窗口)</div></div></a></div><div class="next-post pull-right"><a href="/2022/01/25/LeetCode.977.189.283.167(%E5%8F%8C%E6%8C%87%E9%92%88)/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">LeetCode.977.189.283.167(双指针)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/02/07/LeetCode.82.15(双指针)/" title="LeetCode.82.15(双指针)"><img class="cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-07</div><div class="title">LeetCode.82.15(双指针)</div></div></a></div><div><a href="/2022/02/08/LeetCode.844.986.11(双指针)/" title="LeetCode.844.986.11(双指针)"><img class="cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-08</div><div class="title">LeetCode.844.986.11(双指针)</div></div></a></div><div><a href="/2022/01/25/LeetCode.977.189.283.167(双指针)/" title="LeetCode.977.189.283.167(双指针)"><img class="cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-25</div><div class="title">LeetCode.977.189.283.167(双指针)</div></div></a></div><div><a href="/2022/02/11/LeetCode.1091.130.797(广度优先搜索&深度优先搜索)/" title="LeetCode.1091.130.797(广度优先搜索&深度优先搜索)"><img class="cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-11</div><div class="title">LeetCode.1091.130.797(广度优先搜索&深度优先搜索)</div></div></a></div><div><a href="/2022/02/23/LeetCode.1143.583.72.322.343(动态规划)/" title="LeetCode.1143.583.72.322.343(动态规划)"><img class="cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-23</div><div class="title">LeetCode.1143.583.72.322.343(动态规划)</div></div></a></div><div><a href="/2022/02/07/LeetCode.153.162(二分查找)/" title="LeetCode.153.162(二分查找)"><img class="cover" src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-07</div><div class="title">LeetCode.153.162(二分查找)</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/24218478_84738252_p0_%EF%BF%A6ANKE_the_moon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">零泽</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/lz37"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#344-%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.</span> <span class="toc-text">344.反转字符串</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#557-%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8D%95%E8%AF%8D-iii"><span class="toc-number">2.</span> <span class="toc-text">557.反转字符串中的单词-iii</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#876-%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E7%BB%93%E7%82%B9"><span class="toc-number">3.</span> <span class="toc-text">876.链表的中间结点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC-n-%E4%B8%AA%E7%BB%93%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text">19.删除链表的倒数第-n-个结点</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/04/06/Markdown%E4%B8%ADMermaid%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Markdown中Mermaid的使用"><img src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_72608843_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_(%20%E2%80%A2%20%CC%80%CF%89%E2%80%A2%CC%81%20)%E2%9C%A7Great%20Crisis%20II.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Markdown中Mermaid的使用"/></a><div class="content"><a class="title" href="/2022/04/06/Markdown%E4%B8%ADMermaid%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Markdown中Mermaid的使用">Markdown中Mermaid的使用</a><time datetime="2022-04-06T11:40:00.000Z" title="发表于 2022-04-06 19:40:00">2022-04-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/05/LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0(04.05-)/" title="LeetCode刷题笔记(04.05-)"><img src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LeetCode刷题笔记(04.05-)"/></a><div class="content"><a class="title" href="/2022/04/05/LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0(04.05-)/" title="LeetCode刷题笔记(04.05-)">LeetCode刷题笔记(04.05-)</a><time datetime="2022-04-05T05:11:00.000Z" title="发表于 2022-04-05 13:11:00">2022-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/20/%E8%93%9D%E6%A1%A5%E6%9D%AF/" title="蓝桥杯"><img src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="蓝桥杯"/></a><div class="content"><a class="title" href="/2022/03/20/%E8%93%9D%E6%A1%A5%E6%9D%AF/" title="蓝桥杯">蓝桥杯</a><time datetime="2022-03-20T03:38:00.000Z" title="发表于 2022-03-20 11:38:00">2022-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/16/LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0(03.16-03.19)/" title="LeetCode刷题笔记(03.16-03.19)"><img src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LeetCode刷题笔记(03.16-03.19)"/></a><div class="content"><a class="title" href="/2022/03/16/LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0(03.16-03.19)/" title="LeetCode刷题笔记(03.16-03.19)">LeetCode刷题笔记(03.16-03.19)</a><time datetime="2022-03-16T02:47:00.000Z" title="发表于 2022-03-16 10:47:00">2022-03-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/02/LeetCode%E5%88%B7%E9%A1%8C%E7%AD%86%E8%A8%98(03.02-03.15)/" title="LeetCode刷題筆記(03.02-03.15)"><img src="https://cdn.jsdelivr.net/gh/lz37/images/img/29535589_84295672_p0_Archive%20%20%E9%87%8C%E4%B8%AA%E4%BA%BA%E5%AD%98%E6%A1%A3%E5%A4%84_%E8%BE%89%E7%8F%96%E7%AA%81%E5%9B%B4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LeetCode刷題筆記(03.02-03.15)"/></a><div class="content"><a class="title" href="/2022/03/02/LeetCode%E5%88%B7%E9%A1%8C%E7%AD%86%E8%A8%98(03.02-03.15)/" title="LeetCode刷題筆記(03.02-03.15)">LeetCode刷題筆記(03.02-03.15)</a><time datetime="2022-03-02T08:34:00.000Z" title="发表于 2022-03-02 16:34:00">2022-03-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By 零泽</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
